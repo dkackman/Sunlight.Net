@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
@@ -20,19 +21,23 @@ namespace SunlightAPI
             _root = root;
             apikey_param = "&apikey=" + api_key;
         }
+        public async Task<T> Get<T>(string resource) where T : class
+        {
+            Debug.WriteLine(resource);
+
+            var client = new RestClient();
+            client.BaseUrl = _root;
+
+            var request = new RestRequest(resource);
+
+            return await client.ExecuteAsync<T>(request);
+        }
 
         public async Task<T> Get<T>(string endPoint, IDictionary<string, object> parms) where T : class
         {
             Debug.Assert(parms != null);
-            
-            var client = new RestClient();
-            client.BaseUrl = _root;
 
-            string resource = FormatResource(endPoint, parms);
-            Debug.WriteLine(resource);
-            var request = new RestRequest(resource);
-            
-            return await client.ExecuteAsync<T>(request);
+            return await Get<T>(FormatResource(endPoint, parms));
         }
 
         /// <summary>

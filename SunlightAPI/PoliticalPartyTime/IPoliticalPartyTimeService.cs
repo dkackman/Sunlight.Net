@@ -8,6 +8,10 @@ namespace SunlightAPI.PoliticalPartyTime
 {
     interface IPoliticalPartyTimeService
     {
+        Task<T> GetNext<T>(string request) where T : class;
+
         Task<FilterResults> FilterEvents(DateTime start_date__gt, string beneficiaries__crp_id = null, string host__id = null, string beneficiaries__state = null);
+
+        Task<EventResult> GetEventById(string id);
     }
 }
