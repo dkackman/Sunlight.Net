@@ -27,7 +27,6 @@ namespace SunlightAPI
             
             var client = new RestClient();
             client.BaseUrl = _root;
-            client.UserAgent = "Sunlight client for Windows Phone 8 (v0.01)";
 
             string resource = FormatResource(endPoint, parms);
             Debug.WriteLine(resource);
