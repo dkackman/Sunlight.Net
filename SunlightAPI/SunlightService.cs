@@ -9,20 +9,24 @@ using PortableRest;
 
 namespace SunlightAPI
 {
-    static class Sunlight
+    class SunlightService
     {
-        const string root = "http://capitolwords.org/api/1";
+        string _root;
 
-        const string api_key = "e5883b15e17d4e1f8d93babda91160c6";
+        string apikey_param;
 
-        const string apikey_param = "&apikey=" + api_key;
+        public SunlightService(string root, string api_key)
+        {
+            _root = root;
+            apikey_param = "&apikey=" + api_key;
+        }
 
-        public static async Task<T> Get<T>(string endPoint, IDictionary<string, object> parms) where T : class
+        public async Task<T> Get<T>(string endPoint, IDictionary<string, object> parms) where T : class
         {
             Debug.Assert(parms != null);
             
             var client = new RestClient();
-            client.BaseUrl = root;
+            client.BaseUrl = _root;
             client.UserAgent = "Sunlight client for Windows Phone 8 (v0.01)";
 
             string resource = FormatResource(endPoint, parms);
@@ -38,7 +42,7 @@ namespace SunlightAPI
         /// <param name="endPoint"></param>
         /// <param name="parms"></param>
         /// <returns></returns>
-        private static string FormatResource(string endPoint, IDictionary<string, object> parms)
+        private string FormatResource(string endPoint, IDictionary<string, object> parms)
         {
             if (parms.Count == 0)
                 return "";

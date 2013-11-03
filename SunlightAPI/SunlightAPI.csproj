@@ -39,7 +39,14 @@
     <Compile Include="CapitolWords\ICapitolWordsService.cs" />
     <Compile Include="EquatableObject.cs" />
     <Compile Include="PagingState.cs" />
-    <Compile Include="Sunlight.cs" />
+    <Compile Include="PoliticalPartyTime\BeneficiaryResult.cs" />
+    <Compile Include="PoliticalPartyTime\EventResult.cs" />
+    <Compile Include="PoliticalPartyTime\FilterResults.cs" />
+    <Compile Include="PoliticalPartyTime\IPoliticalPartyTimeService.cs" />
+    <Compile Include="PoliticalPartyTime\MetaResult.cs" />
+    <Compile Include="PoliticalPartyTime\PoliticalPartyTimeService.cs" />
+    <Compile Include="PoliticalPartyTime\VenueResult.cs" />
+    <Compile Include="SunlightService.cs" />
     <Compile Include="CapitolWords\ResultTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -7,6 +7,12 @@ namespace SunlightAPI.CapitolWords
 {
     public class CapitolWordsService : ICapitolWordsService
     {
+        private SunlightService _service;
+
+        public CapitolWordsService(string api_key)
+        {
+            _service = new SunlightService("http://capitolwords.org/api/1", api_key);
+        }
         public async Task<IEnumerable<PhraseResult>> GetTopPhrasesByState(string state, int wordCount = 1, PagingState page = null, string sort = "count desc")
         {
             return await GetTopPhrases(topPhraseEntity.state, state, wordCount, page, sort);
@@ -24,7 +30,7 @@ namespace SunlightAPI.CapitolWords
             return await GetTopPhrases(topPhraseEntity.legislator, legislator, wordCount, page, sort);
         }
 
-        private static async Task<IEnumerable<PhraseResult>> GetTopPhrases(topPhraseEntity entityType, string entityValue, int wordCount, PagingState page, string sort)
+        private async Task<IEnumerable<PhraseResult>> GetTopPhrases(topPhraseEntity entityType, string entityValue, int wordCount, PagingState page, string sort)
         {
             Debug.Assert(wordCount >= 1 && wordCount <= 5);
 
@@ -35,7 +41,7 @@ namespace SunlightAPI.CapitolWords
             parms.Add("page", page != null ? page.Page : 0);
             parms.Add("sort", sort);
 
-            return await Sunlight.Get<IEnumerable<PhraseResult>>("phrases.json", parms);
+            return await _service.Get<IEnumerable<PhraseResult>>("phrases.json", parms);
         }
 
         public async Task<IEnumerable<DayResult>> GetPhraseTimeSeriesByDay(string phrase, string bioGuideId = null, SearchParameters searchParams = null)
@@ -53,7 +59,7 @@ namespace SunlightAPI.CapitolWords
             return await GetPhraseTimeSeries<YearResult>(granularity.year, phrase, bioGuideId, searchParams);
         }
 
-        private static async Task<IEnumerable<T>> GetPhraseTimeSeries<T>(granularity granularity, string phrase, string bioGuideId, SearchParameters searchParams)
+        private async Task<IEnumerable<T>> GetPhraseTimeSeries<T>(granularity granularity, string phrase, string bioGuideId, SearchParameters searchParams)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("granularity", granularity);
@@ -63,7 +69,7 @@ namespace SunlightAPI.CapitolWords
             if (searchParams != null)
                 searchParams.GetParameters(parms);
 
-            var results = await Sunlight.Get<ResultsWrapper<T>>("dates.json", parms);
+            var results = await _service.Get<ResultsWrapper<T>>("dates.json", parms);
             return results.results;
         }
 
@@ -87,7 +93,7 @@ namespace SunlightAPI.CapitolWords
             return await GetTopEntityByPhrase<StateResult>(entity.state, phrase, page, sort, searchParams);
         }
 
-        private static async Task<IEnumerable<T>> GetTopEntityByPhrase<T>(entity entity, string phrase, PagingState page, string sort, SearchParameters searchParams)
+        private async Task<IEnumerable<T>> GetTopEntityByPhrase<T>(entity entity, string phrase, PagingState page, string sort, SearchParameters searchParams)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("phrase", phrase);
@@ -97,7 +103,7 @@ namespace SunlightAPI.CapitolWords
             if (searchParams != null)
                 searchParams.GetParameters(parms);
 
-            var results = await Sunlight.Get<ResultsWrapper<T>>(string.Format("phrases/{0}.json",entity), parms);
+            var results = await _service.Get<ResultsWrapper<T>>(string.Format("phrases/{0}.json", entity), parms);
             return results.results;
         }
 
@@ -112,7 +118,7 @@ namespace SunlightAPI.CapitolWords
             if (searchParams != null)
                 searchParams.GetParameters(parms);
 
-            return await Sunlight.Get<FullTextSearchResultList>("text.json", parms);
+            return await _service.Get<FullTextSearchResultList>("text.json", parms);
         }
     }
 }
