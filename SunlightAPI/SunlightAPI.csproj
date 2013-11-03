@@ -42,6 +42,7 @@
     <Compile Include="PoliticalPartyTime\BeneficiaryResult.cs" />
     <Compile Include="PoliticalPartyTime\EventResult.cs" />
     <Compile Include="PoliticalPartyTime\FilterResults.cs" />
+    <Compile Include="PoliticalPartyTime\HostResult.cs" />
     <Compile Include="PoliticalPartyTime\IPoliticalPartyTimeService.cs" />
     <Compile Include="PoliticalPartyTime\MetaResult.cs" />
     <Compile Include="PoliticalPartyTime\PoliticalPartyTimeService.cs" />
