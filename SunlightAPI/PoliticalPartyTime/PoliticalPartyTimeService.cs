@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SunlightAPI.PoliticalPartyTime
@@ -23,7 +21,7 @@ namespace SunlightAPI.PoliticalPartyTime
             return await _service.Get<T>(request);
         }
 
-        public async Task<FilterResults> FilterEvents(DateTime start_date__gt, string beneficiaries__crp_id = null, string host__id = null, string beneficiaries__state = null)
+        public async Task<FilterResults<EventResult>> FilterEvents(DateTime start_date__gt, string beneficiaries__crp_id = null, string host__id = null, string beneficiaries__state = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("format", "json");
@@ -32,7 +30,7 @@ namespace SunlightAPI.PoliticalPartyTime
             parms.Add("host__id", host__id);
             parms.Add("beneficiaries__state", beneficiaries__state);
 
-            return await _service.Get<FilterResults>(apiV + "/event/", parms);
+            return await _service.Get<FilterResults<EventResult>>(apiV + "/event/", parms);
         }
 
         public async Task<EventResult> GetEventById(string id)
@@ -41,6 +39,39 @@ namespace SunlightAPI.PoliticalPartyTime
             parms.Add("format", "json");
 
             return await _service.Get<EventResult>(string.Format("{0}/event/{1}/", apiV, id), parms);
+        }
+
+        public async Task<FilterResults<BeneficiaryResult>> FilterLegislators(string crp_id = null)
+        {
+            var parms = new Dictionary<string, object>();
+            parms.Add("format", "json");
+            parms.Add("crp_id", crp_id);
+
+            return await _service.Get<FilterResults<BeneficiaryResult>>(apiV + "/lawmaker/", parms);
+        }
+
+        public async Task<BeneficiaryResult> GetLegislatorById(string id)
+        {
+            var parms = new Dictionary<string, object>();
+            parms.Add("format", "json");
+
+            return await _service.Get<BeneficiaryResult>(string.Format("{0}/lawmaker/{1}/", apiV, id), parms);
+        }
+
+        public async Task<FilterResults<HostResult>> GetHosts()
+        {
+            var parms = new Dictionary<string, object>();
+            parms.Add("format", "json");
+
+            return await _service.Get<FilterResults<HostResult>>(apiV + "/host/", parms);
+        }
+
+        public async Task<HostResult> GetHostById(string id)
+        {
+            var parms = new Dictionary<string, object>();
+            parms.Add("format", "json");
+
+            return await _service.Get<HostResult>(string.Format("{0}/host/{1}/", apiV, id), parms);
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
@@ -51,7 +50,7 @@ namespace SunlightAPI
             if (parms.Count == 0)
                 return "";
 
-            // ignore and params where the value is null
+            // ignore all params where the value is null
             var nonNulls = parms.Where(kvp => kvp.Value != null);
 
             // format the first param without an &

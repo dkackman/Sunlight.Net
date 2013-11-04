@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.PoliticalPartyTime
 {
-    public class FilterResults
+    public class FilterResults<T>
     {
         public MetaResult meta { get; set; }
 
-        public List<EventResult> objects { get; set; }
+        public List<T> objects { get; set; }
     }
 }

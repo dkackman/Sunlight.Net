@@ -26,8 +26,6 @@ namespace SunlightAPI.PoliticalPartyTime
         public string rsvp_info { get; set; }
         public DateTime start_date { get; set; }
         public string start_time { get; set; }
-
         public VenueResult venue { get; set; }
-
     }
 }
