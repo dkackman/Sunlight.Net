@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.PoliticalPartyTime
 {
-    interface IPoliticalPartyTimeService
+    public interface IPoliticalPartyTimeService
     {
         Task<T> GetNext<T>(string request) where T : class;
 

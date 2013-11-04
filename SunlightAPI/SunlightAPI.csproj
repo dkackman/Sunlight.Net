@@ -37,6 +37,14 @@
     <Compile Include="CapitolWords\SearchParameters.cs" />
     <Compile Include="CapitolWords\FullTextSearchResult.cs" />
     <Compile Include="CapitolWords\ICapitolWordsService.cs" />
+    <Compile Include="Congress\CommitteeQueryParams.cs" />
+    <Compile Include="Congress\CommitteeResult.cs" />
+    <Compile Include="Congress\DistrictResult.cs" />
+    <Compile Include="Congress\ICongressService.cs" />
+    <Compile Include="Congress\LegislatorQueryParams.cs" />
+    <Compile Include="Congress\LegislatorResult.cs" />
+    <Compile Include="Congress\PageResult.cs" />
+    <Compile Include="Congress\Results.cs" />
     <Compile Include="EquatableObject.cs" />
     <Compile Include="PagingState.cs" />
     <Compile Include="PoliticalPartyTime\BeneficiaryResult.cs" />
@@ -80,6 +88,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
