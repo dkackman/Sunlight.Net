@@ -18,6 +18,7 @@ namespace SunlightAPI
             BaseUrl = root;
             apikey_param = "?apikey=" + api_key;
         }
+
         public async Task<T> Get<T>(string resource) where T : class
         {
             Debug.WriteLine(resource);
@@ -42,9 +43,6 @@ namespace SunlightAPI
         /// <returns></returns>
         private string FormatResource(string endPoint, IDictionary<string, object> parms)
         {
-            if (parms.Count == 0)
-                return "";
-
             // format the first param without an &
             StringBuilder builder = new StringBuilder(endPoint + apikey_param);
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.PoliticalPartyTime
 {
-    public class HostResult : EquatableObject<HostResult>
+    public class HostResult 
     {
         public string crp_id { get; set; }
         public int id { get; set; }

@@ -18,7 +18,7 @@ namespace SunlightAPI.CapitolWords
         public List<T> results { get; set; }
     }
 
-    public class VolumeResult : EquatableObject<VolumeResult>
+    public class VolumeResult
     {
         public double count { get; set; }
 
@@ -26,28 +26,28 @@ namespace SunlightAPI.CapitolWords
         public int Volume;
     }
 
-    public class LegislatorResult : EquatableObject<LegislatorResult>
+    public class LegislatorResult 
     {
         public double count { get; set; }
 
         public string legislator { get; set; }
     }
 
-    public class StateResult : EquatableObject<StateResult>
+    public class StateResult
     {
         public double count { get; set; }
 
         public string state { get; set; }
     }
 
-    public class ChamberResult : EquatableObject<ChamberResult>
+    public class ChamberResult
     {
         public double count { get; set; }
 
         public string chamber { get; set; }
     }
 
-    public abstract class TimeSeriesResult<T> : EquatableObject<T> where T : class
+    public abstract class TimeSeriesResult<T> where T : class
     {
         public double count { get; set; }
 
@@ -73,7 +73,7 @@ namespace SunlightAPI.CapitolWords
         public double raw_count { get; set; }
     }
 
-    public class PhraseResult : EquatableObject<PhraseResult>
+    public class PhraseResult 
     {
         public int count { get; set; }
 

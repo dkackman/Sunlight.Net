@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.PoliticalPartyTime
 {
-    public class EventResult : EquatableObject<EventResult>
+    public class EventResult 
     {
         public List<BeneficiaryResult> beneficiaries { get; set; }
         public bool canceled { get; set; }

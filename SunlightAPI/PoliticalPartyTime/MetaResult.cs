@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.PoliticalPartyTime
 {
-    public class MetaResult : EquatableObject<MetaResult>
+    public class MetaResult 
     {
         public int limit { get; set; }
 

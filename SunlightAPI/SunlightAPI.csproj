@@ -45,7 +45,6 @@
     <Compile Include="Congress\LegislatorResult.cs" />
     <Compile Include="Congress\PageResult.cs" />
     <Compile Include="Congress\Results.cs" />
-    <Compile Include="EquatableObject.cs" />
     <Compile Include="PagingState.cs" />
     <Compile Include="PoliticalPartyTime\BeneficiaryResult.cs" />
     <Compile Include="PoliticalPartyTime\EventResult.cs" />
