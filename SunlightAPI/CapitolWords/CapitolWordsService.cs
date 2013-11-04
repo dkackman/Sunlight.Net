@@ -7,11 +7,11 @@ namespace SunlightAPI.CapitolWords
 {
     public class CapitolWordsService : ICapitolWordsService
     {
-        private SunlightService _service;
+        private SunlightRestClient _service;
 
         public CapitolWordsService(string api_key)
         {
-            _service = new SunlightService("http://capitolwords.org/api/1", api_key);
+            _service = new SunlightRestClient("http://capitolwords.org/api/1", api_key);
         }
         public async Task<IEnumerable<PhraseResult>> GetTopPhrasesByState(string state, int wordCount = 1, PagingState page = null, string sort = "count desc")
         {

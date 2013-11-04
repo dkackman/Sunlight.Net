@@ -55,7 +55,7 @@
     <Compile Include="PoliticalPartyTime\MetaResult.cs" />
     <Compile Include="PoliticalPartyTime\PoliticalPartyTimeService.cs" />
     <Compile Include="PoliticalPartyTime\VenueResult.cs" />
-    <Compile Include="SunlightService.cs" />
+    <Compile Include="SunlightRestClient.cs" />
     <Compile Include="CapitolWords\ResultTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
