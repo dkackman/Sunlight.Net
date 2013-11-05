@@ -14,7 +14,7 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task SimpleFilterEventTest()
         {
-            var service = new PoliticalPartyTimeService(APIKEY.Key);
+            var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
             var result = await service.FilterEvents(new DateTime(2013, 1, 1));
 
             Assert.IsNotNull(result);
@@ -23,7 +23,7 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task PageFilterEvents()
         {
-            var service = new PoliticalPartyTimeService(APIKEY.Key);
+            var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
             var result = await service.FilterEvents(new DateTime(2013, 1, 1));
             Assert.IsNotNull(result.meta);
 
@@ -37,7 +37,7 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task TestEventById()
         {
-            var service = new PoliticalPartyTimeService(APIKEY.Key);
+            var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
             var result = await service.GetEventById("31");
 
             Assert.IsNotNull(result);
@@ -47,7 +47,7 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task GetHostsTest()
         {
-            var service = new PoliticalPartyTimeService(APIKEY.Key);
+            var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
             var result = await service.FilterEvents(new DateTime(2013, 1, 1));
 
             Assert.IsNotNull(result);
@@ -57,7 +57,7 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task TestHostById()
         {
-            var service = new PoliticalPartyTimeService(APIKEY.Key);
+            var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
             var result = await service.GetHostById("19");
 
             Assert.IsNotNull(result);
@@ -67,7 +67,7 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task SimpleFilterLegislatorTest()
         {
-            var service = new PoliticalPartyTimeService(APIKEY.Key);
+            var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
             var result = await service.FilterLegislators();
 
             Assert.IsNotNull(result);
@@ -77,7 +77,7 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task TestLegislatorById()
         {
-            var service = new PoliticalPartyTimeService(APIKEY.Key);
+            var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
             var result = await service.GetLegislatorById("12");
 
             Assert.IsNotNull(result);

@@ -10,7 +10,7 @@ namespace SunlightAPI.Congress
         public string chamber { get; set; }
         public string contact_form { get; set; }
         public string crp_id { get; set; }
-        public int district { get; set; }
+        public int? district { get; set; }
         public string facebook_id { get; set; }
         public string fax { get; set; }
         public List<string> fec_ids { get; set; }

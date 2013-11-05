@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
@@ -13,9 +14,10 @@ namespace SunlightAPI
     {
         string apikey_param;
 
-        public SunlightRestClient(string root, string api_key)
+        public SunlightRestClient(string root, string api_key, string user_agent)
         {
             BaseUrl = root;
+            UserAgent = user_agent;
             apikey_param = "?apikey=" + api_key;
         }
 
@@ -23,8 +25,8 @@ namespace SunlightAPI
         {
             Debug.WriteLine(resource);
 
-            var request = new RestRequest(resource);
-
+            var request = new RestRequest(resource, HttpMethod.Get);
+            request.ContentType = ContentTypes.FormUrlEncoded;
             return await ExecuteAsync<T>(request);
         }
 

@@ -13,5 +13,7 @@ namespace SunlightAPI.Congress
         public string name { get; set; }
         public string parent_committee_id { get; set; }
         public bool? subcommittee { get; set; }
+        public string member_ids { get; set; }
+
     }
 }

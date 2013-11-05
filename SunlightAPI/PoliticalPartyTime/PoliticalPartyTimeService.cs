@@ -11,9 +11,9 @@ namespace SunlightAPI.PoliticalPartyTime
         private const string host = "http://politicalpartytime.org";
         private const string apiV = "api/v1";
 
-        public PoliticalPartyTimeService(string api_key)
-        {///api/v1/event/?offset=50&apikey=e5883b15e17d4e1f8d93babda91160c6&limit=50&start_date__gt=2013-01-01&format=json
-            _service = new SunlightRestClient(host, api_key);
+        public PoliticalPartyTimeService(string api_key, string user_agent = "")
+        {
+            _service = new SunlightRestClient(host, api_key, user_agent);
         }
 
         public async Task<T> GetNext<T>(string request) where T : class

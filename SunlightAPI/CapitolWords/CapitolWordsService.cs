@@ -9,9 +9,9 @@ namespace SunlightAPI.CapitolWords
     {
         private SunlightRestClient _service;
 
-        public CapitolWordsService(string api_key)
+        public CapitolWordsService(string api_key, string user_agent = "")
         {
-            _service = new SunlightRestClient("http://capitolwords.org/api/1", api_key);
+            _service = new SunlightRestClient("http://capitolwords.org/api/1", api_key, user_agent);
         }
         public async Task<IEnumerable<PhraseResult>> GetTopPhrasesByState(string state, int wordCount = 1, PagingState page = null, string sort = "count desc")
         {
