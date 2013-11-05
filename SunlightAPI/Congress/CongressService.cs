@@ -35,7 +35,11 @@ namespace SunlightAPI.Congress
 
         public async Task<Results<LegislatorResult>> FindLegislators(string query = null, LegislatorResult searchPrototype = null)
         {
-            throw new NotImplementedException();
+            var parms = new Dictionary<string, object>();
+            parms.Add("query", query);
+            parms.AddSearchableProperties(searchPrototype);
+
+            return await _service.Get<Results<LegislatorResult>>("/legislators", parms);
         }
 
         public async Task<Results<DistrictResult>> FindDistricts(double lat, double lon)
