@@ -14,3 +14,4 @@ In order to run the unit tests open the file APIKEY.cs and assign your [register
 This is currently a work in progress and contains wrappers and unit tests for these services:
 - [Capitol Words](http://sunlightlabs.github.io/Capitol-Words/)
 - [Political Party Time](http://sunlightlabs.github.io/partytime-docs/)
+- [Congress](http://sunlightlabs.github.io/congress/)
