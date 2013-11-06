@@ -16,7 +16,7 @@ namespace SunlightAPI.Congress
             _service = new SunlightRestClient(host, api_key, user_agent);
         }
 
-        public async Task<Results<LegislatorResult>> FindLegislators(double lat, double lon)
+        public async Task<Results<LegislatorResult>> LocateLegislators(double lat, double lon)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("latitude", lat);
@@ -25,7 +25,7 @@ namespace SunlightAPI.Congress
             return await _service.Get<Results<LegislatorResult>>("/legislators/locate", parms);
         }
 
-        public async Task<Results<LegislatorResult>> FindLegislators(string zip)
+        public async Task<Results<LegislatorResult>> LocateLegislators(string zip)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("zip", zip);
@@ -42,7 +42,7 @@ namespace SunlightAPI.Congress
             return await _service.Get<Results<LegislatorResult>>("/legislators", parms);
         }
 
-        public async Task<Results<DistrictResult>> FindDistricts(double lat, double lon)
+        public async Task<Results<DistrictResult>> LocateDistricts(double lat, double lon)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("latitude", lat);
@@ -51,7 +51,7 @@ namespace SunlightAPI.Congress
             return await _service.Get<Results<DistrictResult>>("/districts/locate", parms);
         }
 
-        public async Task<Results<DistrictResult>> FindDistricts(string zip)
+        public async Task<Results<DistrictResult>> LocateDistricts(string zip)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("zip", zip);
@@ -96,7 +96,7 @@ namespace SunlightAPI.Congress
             return await _service.Get<Results<VoteResult>>("/votes", parms);
         }
 
-        public async Task<Results<FloorUpdateResult>> FindFloorUpdaste(string query = null, FloorUpdateResult searchPrototype = null)
+        public async Task<Results<FloorUpdateResult>> FindFloorUpdates(string query = null, FloorUpdateResult searchPrototype = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("query", query);
