@@ -61,32 +61,66 @@ namespace SunlightAPI.Congress
 
         public async Task<Results<CommitteeResult>> FindCommittees(string query = null, CommitteeResult searchPrototype = null)
         {
-            throw new NotImplementedException();
+            var parms = new Dictionary<string, object>();
+            parms.Add("query", query);
+            parms.AddSearchableProperties(searchPrototype);
+
+            return await _service.Get<Results<CommitteeResult>>("/committees", parms);
         }
 
         public async Task<Results<BillResult>> FindBills(string query = null, BillResult searchPrototype = null)
         {
-            throw new NotImplementedException();
+            var parms = new Dictionary<string, object>();
+            parms.Add("query", query);
+            parms.AddSearchableProperties(searchPrototype);
+
+            return await _service.Get<Results<BillResult>>("/bills", parms);
         }
 
-        public async Task<Results<BillResult>> SearchBills(string query = null, BillResult searchPrototype = null)
+        public async Task<Results<BillResult>> SearchBills(string query = null, bool highlight = false, BillResult searchPrototype = null)
         {
-            throw new NotImplementedException();
+            var parms = new Dictionary<string, object>();
+            parms.Add("query", query);
+            parms.Add("highlight", highlight);
+            parms.AddSearchableProperties(searchPrototype);
+
+            return await _service.Get<Results<BillResult>>("/bills/search", parms);
         }
 
         public async Task<Results<VoteResult>> FindVotes(string query = null, VoteResult searchPrototype = null)
         {
-            throw new NotImplementedException();
+            var parms = new Dictionary<string, object>();
+            parms.Add("query", query);
+            parms.AddSearchableProperties(searchPrototype);
+
+            return await _service.Get<Results<VoteResult>>("/votes", parms);
         }
 
         public async Task<Results<FloorUpdateResult>> FindFloorUpdaste(string query = null, FloorUpdateResult searchPrototype = null)
         {
-            throw new NotImplementedException();
+            var parms = new Dictionary<string, object>();
+            parms.Add("query", query);
+            parms.AddSearchableProperties(searchPrototype);
+
+            return await _service.Get<Results<FloorUpdateResult>>("/floor_updates", parms);
         }
 
         public async Task<Results<HearingResult>> FindHearings(string query = null, HearingResult searchPrototype = null)
         {
-            throw new NotImplementedException();
+            var parms = new Dictionary<string, object>();
+            parms.Add("query", query);
+            parms.AddSearchableProperties(searchPrototype);
+
+            return await _service.Get<Results<HearingResult>>("/hearings", parms);
+        }
+
+        public async Task<Results<UpcomingBillResult>> FindUpcomingBills(string query = null, UpcomingBillResult searchPrototype = null)
+        {
+            var parms = new Dictionary<string, object>();
+            parms.Add("query", query);
+            parms.AddSearchableProperties(searchPrototype);
+
+            return await _service.Get<Results<UpcomingBillResult>>("/upcoming_bills", parms);
         }
     }
 }

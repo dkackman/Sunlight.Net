@@ -18,11 +18,13 @@ namespace SunlightAPI.Congress
         Task<Results<CommitteeResult>> FindCommittees(string query = null, CommitteeResult searchPrototype = null);
 
         Task<Results<BillResult>> FindBills(string query = null, BillResult searchPrototype = null);
-        Task<Results<BillResult>> SearchBills(string query = null, BillResult searchPrototype = null);
+        Task<Results<BillResult>> SearchBills(string query = null, bool highlight = false, BillResult searchPrototype = null);
 
         Task<Results<VoteResult>> FindVotes(string query = null, VoteResult searchPrototype = null);
         Task<Results<FloorUpdateResult>> FindFloorUpdaste(string query = null, FloorUpdateResult searchPrototype = null);
 
         Task<Results<HearingResult>> FindHearings(string query = null, HearingResult searchPrototype = null);
+
+        Task<Results<UpcomingBillResult>> FindUpcomingBills(string query = null, UpcomingBillResult searchPrototype = null);
     }
 }

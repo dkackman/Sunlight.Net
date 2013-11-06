@@ -49,6 +49,7 @@
     <Compile Include="Congress\ParamHelper.cs" />
     <Compile Include="Congress\Results.cs" />
     <Compile Include="Congress\SearchablePropertyAttribute.cs" />
+    <Compile Include="Congress\UpcomingBillResult.cs" />
     <Compile Include="Congress\VoteResult.cs" />
     <Compile Include="PagingState.cs" />
     <Compile Include="PoliticalPartyTime\BeneficiaryResult.cs" />
