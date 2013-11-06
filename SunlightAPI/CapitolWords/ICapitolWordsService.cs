@@ -4,45 +4,6 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.CapitolWords
 {
-    public enum topPhraseEntity
-    {
-        date,
-        month,
-        state,
-        legislator
-    }
-
-    public enum party
-    {
-        unknown,
-        D,
-        R,
-        I
-    }
-
-    public enum chamber
-    {
-        unknown,
-        house,
-        senate,
-        extensions
-    }
-
-    public enum granularity
-    {
-        day,
-        month,
-        year
-    }
-
-    public enum entity
-    {
-        state,
-        legislator,
-        volume,
-        chamber
-    }
-
     public interface ICapitolWordsService
     {
         Task<IEnumerable<PhraseResult>> GetTopPhrasesByState(string state, int wordCount = 1, PagingState page = null, string sort = "count desc");

@@ -6,6 +6,20 @@ using System.Net;
 
 namespace SunlightAPI.CapitolWords
 {
+    public enum chamber
+    {
+        unknown,
+        house,
+        senate,
+        extensions
+    }
+    public enum party
+    {
+        unknown,
+        D,
+        R,
+        I
+    }
     public class SearchParameters
     {
         public SearchParameters()

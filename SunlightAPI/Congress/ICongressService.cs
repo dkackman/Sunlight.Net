@@ -6,14 +6,6 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.Congress
 {
-    public enum ComitteeChamberType
-    {
-        Null,
-        house,
-        senate,
-        joint
-    }
-
     public interface ICongressService
     {
         Task<Results<LegislatorResult>> FindLegislators(double lat, double lon);
