@@ -63,7 +63,7 @@ namespace SunlightAPI.Congress
     }
 
     //
-    public class BillResult
+    public class Bill
     {
         [SearchableProperty]
         public string bill_id { get; set; }

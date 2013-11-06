@@ -8,23 +8,23 @@ namespace SunlightAPI.Congress
 {
     public interface ICongressService
     {
-        Task<Results<LegislatorResult>> LocateLegislators(double lat, double lon);
-        Task<Results<LegislatorResult>> LocateLegislators(string zip);
-        Task<Results<LegislatorResult>> FindLegislators(string query = null, LegislatorResult searchPrototype = null);
+        Task<Results<Legislator>> LocateLegislators(double lat, double lon);
+        Task<Results<Legislator>> LocateLegislators(string zip);
+        Task<Results<Legislator>> FindLegislators(string query = null, Legislator searchPrototype = null);
 
-        Task<Results<DistrictResult>> LocateDistricts(double lat, double lon);
-        Task<Results<DistrictResult>> LocateDistricts(string zip);
+        Task<Results<District>> LocateDistricts(double lat, double lon);
+        Task<Results<District>> LocateDistricts(string zip);
 
-        Task<Results<CommitteeResult>> FindCommittees(string query = null, CommitteeResult searchPrototype = null);
+        Task<Results<Committee>> FindCommittees(string query = null, Committee searchPrototype = null);
 
-        Task<Results<BillResult>> FindBills(string query = null, BillResult searchPrototype = null);
-        Task<Results<BillResult>> SearchBills(string query = null, bool highlight = false, BillResult searchPrototype = null);
+        Task<Results<Bill>> FindBills(string query = null, Bill searchPrototype = null);
+        Task<Results<Bill>> SearchBills(string query = null, bool highlight = false, Bill searchPrototype = null);
 
-        Task<Results<VoteResult>> FindVotes(string query = null, VoteResult searchPrototype = null);
-        Task<Results<FloorUpdateResult>> FindFloorUpdates(string query = null, FloorUpdateResult searchPrototype = null);
+        Task<Results<Vote>> FindVotes(string query = null, Vote searchPrototype = null);
+        Task<Results<FloorUpdate>> FindFloorUpdates(string query = null, FloorUpdate searchPrototype = null);
 
-        Task<Results<HearingResult>> FindHearings(string query = null, HearingResult searchPrototype = null);
+        Task<Results<Hearing>> FindHearings(string query = null, Hearing searchPrototype = null);
 
-        Task<Results<UpcomingBillResult>> FindUpcomingBills(string query = null, UpcomingBillResult searchPrototype = null);
+        Task<Results<UpcomingBill>> FindUpcomingBills(string query = null, UpcomingBill searchPrototype = null);
     }
 }

@@ -27,7 +27,7 @@ namespace SunlightAPITests
             var result = await service.FilterEvents(new DateTime(2013, 1, 1));
             Assert.IsNotNull(result.meta);
 
-            var next = await service.GetNext<FilterResults<EventResult>>(result.meta.next);
+            var next = await service.GetNext<FilterResults<Event>>(result.meta.next);
             Assert.IsNotNull(next);
             Assert.IsNotNull(next.meta);
 

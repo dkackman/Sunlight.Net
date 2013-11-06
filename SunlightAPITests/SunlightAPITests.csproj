@@ -72,6 +72,7 @@
     <Compile Include="PolitcalPartyTimeTests.cs" />
     <Compile Include="ReflectionEqualityComparer.cs" />
     <Compile Include="CongressTests.cs" />
+    <Compile Include="OpenStatesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SunlightAPI\SunlightAPI.csproj">

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.Congress
 {
-    public class CommitteeResult
+    public class Committee
     {
         public string chamber { get; set; }
         public string committee_id { get; set; }

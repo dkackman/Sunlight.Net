@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.PoliticalPartyTime
 {
-    public class EventResult 
+    public class Event 
     {
-        public List<BeneficiaryResult> beneficiaries { get; set; }
+        public List<Beneficiary> beneficiaries { get; set; }
         public bool canceled { get; set; }
         public string checks_payable_to_address { get; set; }
         public string contributions_info { get; set; }
@@ -16,7 +16,7 @@ namespace SunlightAPI.PoliticalPartyTime
         public DateTime? end_date { get; set; }
         public string end_time { get; set; }
         public string entertainment { get; set; }
-        public List<HostResult> hosts { get; set; }
+        public List<Host> hosts { get; set; }
         public int id { get; set; }
         public bool is_presidential { get; set; }
         public string make_checks_payable_to { get; set; }
@@ -26,6 +26,6 @@ namespace SunlightAPI.PoliticalPartyTime
         public string rsvp_info { get; set; }
         public DateTime start_date { get; set; }
         public string start_time { get; set; }
-        public VenueResult venue { get; set; }
+        public Venue venue { get; set; }
     }
 }

@@ -13,24 +13,24 @@ namespace SunlightAPI.CapitolWords
         {
             _service = new SunlightRestClient("http://capitolwords.org/api/1", api_key, user_agent);
         }
-        public async Task<IEnumerable<PhraseResult>> GetTopPhrasesByState(string state, int wordCount = 1, PagingState page = null, string sort = "count desc")
+        public async Task<IEnumerable<PhraseCount>> GetTopPhrasesByState(string state, int wordCount = 1, PagingState page = null, string sort = "count desc")
         {
             return await GetTopPhrases("state", state, wordCount, page, sort);
         }
-        public async Task<IEnumerable<PhraseResult>> GetTopPhrasesByDate(DateTime date, int wordCount = 1, PagingState page = null, string sort = "count desc")
+        public async Task<IEnumerable<PhraseCount>> GetTopPhrasesByDate(DateTime date, int wordCount = 1, PagingState page = null, string sort = "count desc")
         {
             return await GetTopPhrases("date", date.ToString("yyyy-MM-dd"), wordCount, page, sort);
         }
-        public async Task<IEnumerable<PhraseResult>> GetTopPhrasesByMonth(DateTime month, int wordCount = 1, PagingState page = null, string sort = "count desc")
+        public async Task<IEnumerable<PhraseCount>> GetTopPhrasesByMonth(DateTime month, int wordCount = 1, PagingState page = null, string sort = "count desc")
         {
             return await GetTopPhrases("month", month.ToString("yyyyMM"), wordCount, page, sort);
         }
-        public async Task<IEnumerable<PhraseResult>> GetTopPhrasesByLegislator(string legislator, int wordCount = 1, PagingState page = null, string sort = "count desc")
+        public async Task<IEnumerable<PhraseCount>> GetTopPhrasesByLegislator(string legislator, int wordCount = 1, PagingState page = null, string sort = "count desc")
         {
             return await GetTopPhrases("legislator", legislator, wordCount, page, sort);
         }
 
-        private async Task<IEnumerable<PhraseResult>> GetTopPhrases(string entityType, string entityValue, int wordCount, PagingState page, string sort)
+        private async Task<IEnumerable<PhraseCount>> GetTopPhrases(string entityType, string entityValue, int wordCount, PagingState page, string sort)
         {
             Debug.Assert(wordCount >= 1 && wordCount <= 5);
 
@@ -41,22 +41,22 @@ namespace SunlightAPI.CapitolWords
             parms.Add("page", page != null ? page.Page : 0);
             parms.Add("sort", sort);
 
-            return await _service.Get<IEnumerable<PhraseResult>>("phrases.json", parms);
+            return await _service.Get<IEnumerable<PhraseCount>>("phrases.json", parms);
         }
 
-        public async Task<IEnumerable<DayResult>> GetPhraseTimeSeriesByDay(string phrase, string bioGuideId = null, SearchParameters searchParams = null)
+        public async Task<IEnumerable<DayCount>> GetPhraseTimeSeriesByDay(string phrase, string bioGuideId = null, SearchParameters searchParams = null)
         {
-            return await GetPhraseTimeSeries<DayResult>("day", phrase, bioGuideId, searchParams);
+            return await GetPhraseTimeSeries<DayCount>("day", phrase, bioGuideId, searchParams);
         }
 
-        public async Task<IEnumerable<MonthResult>> GetPhraseTimeSeriesByMonth(string phrase, string bioGuideId = null, SearchParameters searchParams = null)
+        public async Task<IEnumerable<MonthCount>> GetPhraseTimeSeriesByMonth(string phrase, string bioGuideId = null, SearchParameters searchParams = null)
         {
-            return await GetPhraseTimeSeries<MonthResult>("month", phrase, bioGuideId, searchParams);
+            return await GetPhraseTimeSeries<MonthCount>("month", phrase, bioGuideId, searchParams);
         }
 
-        public async Task<IEnumerable<YearResult>> GetPhraseTimeSeriesByYear(string phrase, string bioGuideId = null, SearchParameters searchParams = null)
+        public async Task<IEnumerable<YearCount>> GetPhraseTimeSeriesByYear(string phrase, string bioGuideId = null, SearchParameters searchParams = null)
         {
-            return await GetPhraseTimeSeries<YearResult>("year", phrase, bioGuideId, searchParams);
+            return await GetPhraseTimeSeries<YearCount>("year", phrase, bioGuideId, searchParams);
         }
 
         private async Task<IEnumerable<T>> GetPhraseTimeSeries<T>(string granularity, string phrase, string bioGuideId, SearchParameters searchParams)
@@ -73,24 +73,24 @@ namespace SunlightAPI.CapitolWords
             return results.results;
         }
 
-        public async Task<IEnumerable<ChamberResult>> GetTopChamberByPhrase(string phrase, PagingState page = null, string sort = "count", SearchParameters searchParams = null)
+        public async Task<IEnumerable<ChamberCount>> GetTopChamberByPhrase(string phrase, PagingState page = null, string sort = "count", SearchParameters searchParams = null)
         {
-            return await GetTopEntityByPhrase<ChamberResult>("chamber", phrase, page, sort, searchParams);
+            return await GetTopEntityByPhrase<ChamberCount>("chamber", phrase, page, sort, searchParams);
         }
 
-        public async Task<IEnumerable<VolumeResult>> GetTopVolumeByPhrase(string phrase, PagingState page = null, string sort = "count", SearchParameters searchParams = null)
+        public async Task<IEnumerable<VolumeCount>> GetTopVolumeByPhrase(string phrase, PagingState page = null, string sort = "count", SearchParameters searchParams = null)
         {
-            return await GetTopEntityByPhrase<VolumeResult>("volume", phrase, page, sort, searchParams);
+            return await GetTopEntityByPhrase<VolumeCount>("volume", phrase, page, sort, searchParams);
         }
 
-        public async  Task<IEnumerable<LegislatorResult>> GetTopLegislatorByPhrase(string phrase, PagingState page = null, string sort = "count", SearchParameters searchParams = null)
+        public async  Task<IEnumerable<LegislatorCount>> GetTopLegislatorByPhrase(string phrase, PagingState page = null, string sort = "count", SearchParameters searchParams = null)
         {
-            return await GetTopEntityByPhrase<LegislatorResult>("legislator", phrase, page, sort, searchParams);
+            return await GetTopEntityByPhrase<LegislatorCount>("legislator", phrase, page, sort, searchParams);
         }
 
-        public async  Task<IEnumerable<StateResult>> GetTopStateByPhrase(string phrase, PagingState page = null, string sort = "count", SearchParameters searchParams = null)
+        public async  Task<IEnumerable<StateCount>> GetTopStateByPhrase(string phrase, PagingState page = null, string sort = "count", SearchParameters searchParams = null)
         {
-            return await GetTopEntityByPhrase<StateResult>("state", phrase, page, sort, searchParams);
+            return await GetTopEntityByPhrase<StateCount>("state", phrase, page, sort, searchParams);
         }
 
         private async Task<IEnumerable<T>> GetTopEntityByPhrase<T>(string entity, string phrase, PagingState page, string sort, SearchParameters searchParams)

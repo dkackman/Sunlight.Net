@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SunlightAPI.Congress
@@ -16,111 +13,111 @@ namespace SunlightAPI.Congress
             _service = new SunlightRestClient(host, api_key, user_agent);
         }
 
-        public async Task<Results<LegislatorResult>> LocateLegislators(double lat, double lon)
+        public async Task<Results<Legislator>> LocateLegislators(double lat, double lon)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("latitude", lat);
             parms.Add("longitude", lon);
 
-            return await _service.Get<Results<LegislatorResult>>("/legislators/locate", parms);
+            return await _service.Get<Results<Legislator>>("/legislators/locate", parms);
         }
 
-        public async Task<Results<LegislatorResult>> LocateLegislators(string zip)
+        public async Task<Results<Legislator>> LocateLegislators(string zip)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("zip", zip);
 
-            return await _service.Get<Results<LegislatorResult>>("/legislators/locate", parms);
+            return await _service.Get<Results<Legislator>>("/legislators/locate", parms);
         }
 
-        public async Task<Results<LegislatorResult>> FindLegislators(string query = null, LegislatorResult searchPrototype = null)
+        public async Task<Results<Legislator>> FindLegislators(string query = null, Legislator searchPrototype = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<LegislatorResult>>("/legislators", parms);
+            return await _service.Get<Results<Legislator>>("/legislators", parms);
         }
 
-        public async Task<Results<DistrictResult>> LocateDistricts(double lat, double lon)
+        public async Task<Results<District>> LocateDistricts(double lat, double lon)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("latitude", lat);
             parms.Add("longitude", lon);
 
-            return await _service.Get<Results<DistrictResult>>("/districts/locate", parms);
+            return await _service.Get<Results<District>>("/districts/locate", parms);
         }
 
-        public async Task<Results<DistrictResult>> LocateDistricts(string zip)
+        public async Task<Results<District>> LocateDistricts(string zip)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("zip", zip);
 
-            return await _service.Get<Results<DistrictResult>>("/districts/locate", parms);
+            return await _service.Get<Results<District>>("/districts/locate", parms);
         }
 
-        public async Task<Results<CommitteeResult>> FindCommittees(string query = null, CommitteeResult searchPrototype = null)
+        public async Task<Results<Committee>> FindCommittees(string query = null, Committee searchPrototype = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<CommitteeResult>>("/committees", parms);
+            return await _service.Get<Results<Committee>>("/committees", parms);
         }
 
-        public async Task<Results<BillResult>> FindBills(string query = null, BillResult searchPrototype = null)
+        public async Task<Results<Bill>> FindBills(string query = null, Bill searchPrototype = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<BillResult>>("/bills", parms);
+            return await _service.Get<Results<Bill>>("/bills", parms);
         }
 
-        public async Task<Results<BillResult>> SearchBills(string query = null, bool highlight = false, BillResult searchPrototype = null)
+        public async Task<Results<Bill>> SearchBills(string query = null, bool highlight = false, Bill searchPrototype = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("query", query);
             parms.Add("highlight", highlight);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<BillResult>>("/bills/search", parms);
+            return await _service.Get<Results<Bill>>("/bills/search", parms);
         }
 
-        public async Task<Results<VoteResult>> FindVotes(string query = null, VoteResult searchPrototype = null)
+        public async Task<Results<Vote>> FindVotes(string query = null, Vote searchPrototype = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<VoteResult>>("/votes", parms);
+            return await _service.Get<Results<Vote>>("/votes", parms);
         }
 
-        public async Task<Results<FloorUpdateResult>> FindFloorUpdates(string query = null, FloorUpdateResult searchPrototype = null)
+        public async Task<Results<FloorUpdate>> FindFloorUpdates(string query = null, FloorUpdate searchPrototype = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<FloorUpdateResult>>("/floor_updates", parms);
+            return await _service.Get<Results<FloorUpdate>>("/floor_updates", parms);
         }
 
-        public async Task<Results<HearingResult>> FindHearings(string query = null, HearingResult searchPrototype = null)
+        public async Task<Results<Hearing>> FindHearings(string query = null, Hearing searchPrototype = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<HearingResult>>("/hearings", parms);
+            return await _service.Get<Results<Hearing>>("/hearings", parms);
         }
 
-        public async Task<Results<UpcomingBillResult>> FindUpcomingBills(string query = null, UpcomingBillResult searchPrototype = null)
+        public async Task<Results<UpcomingBill>> FindUpcomingBills(string query = null, UpcomingBill searchPrototype = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<UpcomingBillResult>>("/upcoming_bills", parms);
+            return await _service.Get<Results<UpcomingBill>>("/upcoming_bills", parms);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.PoliticalPartyTime
 {
-    public class BeneficiaryResult
+    public class Beneficiary
     {
         public string affiliate { get; set; }
         public string bioguide { get; set; }

@@ -18,7 +18,7 @@ namespace SunlightAPI.CapitolWords
         public List<T> results { get; set; }
     }
 
-    public class VolumeResult
+    public class VolumeCount
     {
         public double count { get; set; }
 
@@ -26,28 +26,28 @@ namespace SunlightAPI.CapitolWords
         public int Volume;
     }
 
-    public class LegislatorResult 
+    public class LegislatorCount 
     {
         public double count { get; set; }
 
         public string legislator { get; set; }
     }
 
-    public class StateResult
+    public class StateCount
     {
         public double count { get; set; }
 
         public string state { get; set; }
     }
 
-    public class ChamberResult
+    public class ChamberCount
     {
         public double count { get; set; }
 
         public string chamber { get; set; }
     }
 
-    public abstract class TimeSeriesResult<T> where T : class
+    public abstract class TimeSeriesCount
     {
         public double count { get; set; }
 
@@ -56,24 +56,24 @@ namespace SunlightAPI.CapitolWords
         public int total { get; set; }
     }
 
-    public class MonthResult : TimeSeriesResult<MonthResult>
+    public class MonthCount : TimeSeriesCount
     {
         public string month { get; set; }
     }
 
-    public class YearResult : TimeSeriesResult<YearResult>
+    public class YearCount : TimeSeriesCount
     {
         public string year { get; set; }
     }
 
-    public class DayResult : TimeSeriesResult<DayResult>
+    public class DayCount : TimeSeriesCount
     {
         public DateTime day { get; set; }
 
         public double raw_count { get; set; }
     }
 
-    public class PhraseResult 
+    public class PhraseCount 
     {
         public int count { get; set; }
 

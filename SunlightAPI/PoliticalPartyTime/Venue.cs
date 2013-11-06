@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.PoliticalPartyTime
 {
-    public class VenueResult
+    public class Venue
     {
         public string address1 { get; set; }
         public string address2 { get; set; }

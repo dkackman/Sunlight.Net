@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SunlightAPI.Congress
 {
-    public class LegislatorResult
+    public class Legislator
     {
         public string bioguide_id { get; set; }
         public DateTime birthday { get; set; }

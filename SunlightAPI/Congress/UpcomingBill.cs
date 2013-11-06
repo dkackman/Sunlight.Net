@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.Congress
 {
-    public class UpcomingBillResult
+    public class UpcomingBill
     {
         [SearchableProperty]
         public string bill_id { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.Congress
 {
-    public class DistrictResult
+    public class District
     {
         public string state { get; set; }
 

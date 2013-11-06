@@ -10,16 +10,16 @@ namespace SunlightAPI.PoliticalPartyTime
     {
         Task<T> GetNext<T>(string request) where T : class;
 
-        Task<FilterResults<EventResult>> FilterEvents(DateTime start_date__gt, string beneficiaries__crp_id = null, string host__id = null, string beneficiaries__state = null);
+        Task<FilterResults<Event>> FilterEvents(DateTime start_date__gt, string beneficiaries__crp_id = null, string host__id = null, string beneficiaries__state = null);
 
-        Task<EventResult> GetEventById(string id);
+        Task<Event> GetEventById(string id);
 
-        Task<FilterResults<BeneficiaryResult>> FilterLegislators(string crp_id = null);
+        Task<FilterResults<Beneficiary>> FilterLegislators(string crp_id = null);
 
-        Task<BeneficiaryResult> GetLegislatorById(string id);
+        Task<Beneficiary> GetLegislatorById(string id);
 
-        Task<FilterResults<HostResult>> GetHosts();
+        Task<FilterResults<Host>> GetHosts();
 
-        Task<HostResult> GetHostById(string id);
+        Task<Host> GetHostById(string id);
     }
 }

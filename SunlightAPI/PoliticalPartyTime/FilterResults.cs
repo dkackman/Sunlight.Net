@@ -8,7 +8,7 @@ namespace SunlightAPI.PoliticalPartyTime
 {
     public class FilterResults<T>
     {
-        public MetaResult meta { get; set; }
+        public Meta meta { get; set; }
 
         public List<T> objects { get; set; }
     }

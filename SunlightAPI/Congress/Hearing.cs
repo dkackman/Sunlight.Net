@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.Congress
 {
-    public class HearingResult
+    public class Hearing
     {
         [SearchableProperty]
         public string chamber { get; set; }

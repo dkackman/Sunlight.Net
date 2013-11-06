@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunlightAPI.Congress
 {
-    public class FloorUpdateResult
+    public class FloorUpdate
     {
         [SearchableProperty]
         public string chamber { get; set; }
