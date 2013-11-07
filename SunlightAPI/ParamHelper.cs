@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Diagnostics;
@@ -23,60 +24,53 @@ namespace SunlightAPI
         /// <param name="prefix"></param>
         public static void AddSearchableProperties(this IDictionary<string, object> parms, object o, string prefix = "")
         {
+            Debug.Assert(parms != null);
             if (o == null)
                 return;
 
-            Debug.Assert(parms != null);
-
             foreach (var p in o.GetType().GetRuntimeProperties().Where(p => p.GetCustomAttribute<SearchablePropertyAttribute>() != null))
-            {
-                // first off null values are ignored
-                object value = p.GetValue(o);
-                if (value != null)
-                {
-                    // if the property is a string or value type add it as a param
-                    if (value is string || (value.GetType().GetTypeInfo().IsValueType && !value.Equals(0)))
-                        parms.Add(prefix + p.Name, value);
-
-                    // the property is a list in which case search on the first item's value - committee_ids is an example
-                    else if (value is IList<string> && ((IList<string>)value).Count > 0)
-                        parms.Add(prefix + p.Name, ((IList<string>)value)[0]);
-
-                    // the property is marked as searchable but is a sub ojbect - recurse adding 
-                    // this property name as a prefix (history.house_passage_result is an example)
-                    else
-                        parms.AddSearchableProperties(value, p.Name + ".");
-                }
-            }
+                parms.AddProperty(p, o, prefix);
         }
 
 
         public static void AddProperties(this IDictionary<string, object> parms, object o, string prefix = "")
         {
+            Debug.Assert(parms != null);
             if (o == null)
                 return;
 
-            Debug.Assert(parms != null);
-
             foreach (var p in o.GetType().GetRuntimeProperties())
+                parms.AddProperty(p, o, prefix);
+        }
+
+        private static void AddProperty(this IDictionary<string, object> parms, PropertyInfo p, object o, string prefix = "")
+        {
+            object value = p.GetValue(o);
+            // filter out sentinals values for unitialized search fields
+            if (value != null && !value.Equals(0) && !value.Equals(DateTime.MinValue))
             {
-                // first off null values are ignored
-                object value = p.GetValue(o);
-                if (value != null)
-                {
-                    // if the property is a string or value type add it as a param
-                    if (value is string || (value.GetType().GetTypeInfo().IsValueType && !value.Equals(0)))
-                        parms.Add(prefix + p.Name, value);
+                // if the property is a string just add it
+                if (value is string)
+                    parms.Add(prefix + p.Name, value);
 
-                    // the property is a list in which case search on the first item's value - committee_ids is an example
-                    else if (value is IList<string> && ((IList<string>)value).Count > 0)
-                        parms.Add(prefix + p.Name, ((IList<string>)value)[0]);
-
-                    // the property is marked as searchable but is a sub ojbect - recurse adding 
-                    // this property name as a prefix (history.house_passage_result is an example)
+                // value types
+                else if (value.GetType().GetTypeInfo().IsValueType)
+                {             
+                    // serialize dates in the correct format
+                    if (value is DateTime)
+                        parms.Add(prefix + p.Name, ((DateTime)value).ToString("yyyy-MM-dd"));
                     else
-                        parms.AddProperties(value, p.Name + ".");
+                        parms.Add(prefix + p.Name, value);
                 }
+
+                // the property is a list in which case search on the first item's value - committee_ids is an example
+                else if (value is IList<string> && ((IList<string>)value).Count > 0)
+                    parms.Add(prefix + p.Name, ((IList<string>)value)[0]);
+
+                // the property is marked as searchable but is a sub ojbect - recurse adding 
+                // this property name as a prefix (history.house_passage_result is an example)
+                else
+                    parms.AddProperties(value, p.Name + ".");
             }
         }
     }

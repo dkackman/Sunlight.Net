@@ -74,6 +74,7 @@ namespace SunlightAPITests
             var result = await service.LocateLegislators(44.926868, -93.214049);
 
             Assert.IsNotNull(result);
+            Assert.IsTrue(result.Count() > 0);
         }
 
         [TestMethod]

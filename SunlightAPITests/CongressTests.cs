@@ -24,7 +24,7 @@ namespace SunlightAPITests
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.count > 0);
-            Assert.IsTrue(results.results.Count > 0);
+            Assert.IsTrue(results.results.Count > 0); 
         }
 
         [TestMethod]

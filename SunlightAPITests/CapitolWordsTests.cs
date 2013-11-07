@@ -53,6 +53,7 @@ namespace SunlightAPITests
                 Date = new DateTime(2013, 1, 1)
             };
             var results = await service.FullTextSearch("health", searchParams: parms);
+
             Assert.IsNotNull(results);
             Assert.IsTrue(results.num_found > 0);
             Assert.IsNotNull(results.results);

@@ -66,8 +66,7 @@ namespace SunlightAPI.CapitolWords
             parms.Add("phrase", phrase);
             parms.Add("bioguide_id", bioGuideId);
             parms.Add("percentages", "true");
-            if (searchParams != null)
-                searchParams.GetParameters(parms);
+            parms.AddProperties(searchParams);
 
             var results = await _service.Get<ResultsWrapper<T>>("dates.json", parms);
             return results.results;
@@ -100,8 +99,7 @@ namespace SunlightAPI.CapitolWords
             parms.Add("page", page != null ? page.Page : 0);
             parms.Add("per_page", 50);
             parms.Add("sort", sort);
-            if (searchParams != null)
-                searchParams.GetParameters(parms);
+            parms.AddProperties(searchParams);
 
             var results = await _service.Get<ResultsWrapper<T>>(string.Format("phrases/{0}.json", entity), parms);
             return results.results;
@@ -115,8 +113,7 @@ namespace SunlightAPI.CapitolWords
             parms.Add("bioGuideId", bioGuideId);
             parms.Add("cr_pages", cr_pages);
             parms.Add("page", page != null ? page.Page : 0);
-            if (searchParams != null)
-                searchParams.GetParameters(parms);
+            parms.AddProperties(searchParams);
 
             return await _service.Get<FullTextSearchResultList>("text.json", parms);
         }
