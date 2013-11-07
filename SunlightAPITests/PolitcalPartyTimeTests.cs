@@ -15,7 +15,7 @@ namespace SunlightAPITests
         public async Task SimpleFilterEventTest()
         {
             var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
-            var result = await service.FilterEvents(new DateTime(2013, 1, 1));
+            var result = await service.FindEvents(new DateTime(2013, 1, 1));
 
             Assert.IsNotNull(result);
         }
@@ -24,7 +24,7 @@ namespace SunlightAPITests
         public async Task PageFilterEvents()
         {
             var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
-            var result = await service.FilterEvents(new DateTime(2013, 1, 1));
+            var result = await service.FindEvents(new DateTime(2013, 1, 1));
             Assert.IsNotNull(result.meta);
 
             var next = await service.GetNext<FilterResults<Event>>(result.meta.next);
@@ -38,7 +38,7 @@ namespace SunlightAPITests
         public async Task TestEventById()
         {
             var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
-            var result = await service.GetEventById("31");
+            var result = await service.GetEvent("31");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result.rsvp_info, "Rachel Bourassa; 202-223-8956; normandyrsvp@yahoo.com");
@@ -48,7 +48,7 @@ namespace SunlightAPITests
         public async Task GetHostsTest()
         {
             var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
-            var result = await service.FilterEvents(new DateTime(2013, 1, 1));
+            var result = await service.FindEvents(new DateTime(2013, 1, 1));
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.objects.Count > 0);
@@ -58,7 +58,7 @@ namespace SunlightAPITests
         public async Task TestHostById()
         {
             var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
-            var result = await service.GetHostById("19");
+            var result = await service.GetHost("19");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result.crp_id, "Y00000348220");
@@ -68,7 +68,7 @@ namespace SunlightAPITests
         public async Task SimpleFilterLegislatorTest()
         {
             var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
-            var result = await service.FilterLegislators();
+            var result = await service.FindLegislators();
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.objects.Count > 0);
@@ -78,7 +78,7 @@ namespace SunlightAPITests
         public async Task TestLegislatorById()
         {
             var service = new PoliticalPartyTimeService(APIKEY.Key, "Sunlight.NET unit tests");
-            var result = await service.GetLegislatorById("12");
+            var result = await service.GetLegislator("12");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result.bioguide, "L000263");

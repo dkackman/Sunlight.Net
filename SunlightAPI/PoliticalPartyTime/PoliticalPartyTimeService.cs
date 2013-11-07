@@ -21,7 +21,7 @@ namespace SunlightAPI.PoliticalPartyTime
             return await _service.Get<T>(request);
         }
 
-        public async Task<FilterResults<Event>> FilterEvents(DateTime start_date__gt, string beneficiaries__crp_id = null, string host__id = null, string beneficiaries__state = null)
+        public async Task<FilterResults<Event>> FindEvents(DateTime start_date__gt, string beneficiaries__crp_id = null, string host__id = null, string beneficiaries__state = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("format", "json");
@@ -33,7 +33,7 @@ namespace SunlightAPI.PoliticalPartyTime
             return await _service.Get<FilterResults<Event>>(apiV + "/event/", parms);
         }
 
-        public async Task<Event> GetEventById(string id)
+        public async Task<Event> GetEvent(string id)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("format", "json");
@@ -41,7 +41,7 @@ namespace SunlightAPI.PoliticalPartyTime
             return await _service.Get<Event>(string.Format("{0}/event/{1}/", apiV, id), parms);
         }
 
-        public async Task<FilterResults<Beneficiary>> FilterLegislators(string crp_id = null)
+        public async Task<FilterResults<Beneficiary>> FindLegislators(string crp_id = null)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("format", "json");
@@ -50,7 +50,7 @@ namespace SunlightAPI.PoliticalPartyTime
             return await _service.Get<FilterResults<Beneficiary>>(apiV + "/lawmaker/", parms);
         }
 
-        public async Task<Beneficiary> GetLegislatorById(string id)
+        public async Task<Beneficiary> GetLegislator(string id)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("format", "json");
@@ -66,7 +66,7 @@ namespace SunlightAPI.PoliticalPartyTime
             return await _service.Get<FilterResults<Host>>(apiV + "/host/", parms);
         }
 
-        public async Task<Host> GetHostById(string id)
+        public async Task<Host> GetHost(string id)
         {
             var parms = new Dictionary<string, object>();
             parms.Add("format", "json");
