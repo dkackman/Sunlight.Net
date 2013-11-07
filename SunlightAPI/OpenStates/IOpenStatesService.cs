@@ -9,9 +9,9 @@ namespace SunlightAPI.OpenStates
     public interface IOpenStatesService
     {
         Task<IEnumerable<MetaData>> GetMetaData();
-        Task<IEnumerable<MetaData>> GetMetaData(string state);
+        Task<MetaData> GetMetaData(string state);
         
-        Task<IEnumerable<Bill>> FindBills(string query = null, BillSearchParams parms = null);
+        Task<IEnumerable<Bill>> FindBills(string state, BillSearchParams parms, string query = null);
         Task<Bill> GetBill(string state, string session, string bill_id);
 
         Task<IEnumerable<Legislator>> FindLegislators(string state, LegislatorSearchParams parms = null);

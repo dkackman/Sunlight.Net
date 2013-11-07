@@ -11,10 +11,17 @@ namespace SunlightAPITests
     [TestClass]
     public class CapitolWordsTests
     {
+        private ICapitolWordsService service;
+
+        [TestInitialize]
+        public void Init()
+        {
+            service = new CapitolWordsService(APIKEY.Key, "Sunlight.NET unit tests");
+        }
+        
         [TestMethod]
         public async Task GetSinglePageOfWords()
         {
-            var service = new CapitolWordsService(APIKEY.Key, "Sunlight.NET unit tests");
             var phrases = await service.GetTopPhrasesByState("mn", 2);
             Assert.IsTrue(phrases.Count() > 0);
         }
@@ -22,7 +29,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task GetMultiplePagesOfWords()
         {
-            var service = new CapitolWordsService(APIKEY.Key, "Sunlight.NET unit tests");
             var paging = new PagingState(100);
 
             DateTime date = new DateTime(2013, 1, 1); // this date seems to return many pages
@@ -42,7 +48,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FullTextSearchSimpleTest()
         {
-            var service = new CapitolWordsService(APIKEY.Key, "Sunlight.NET unit tests");
             var parms = new SearchParameters()
             {
                 Date = new DateTime(2013, 1, 1)
@@ -57,7 +62,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task SimpleTimeSeriesTest()
         {
-            var service = new CapitolWordsService(APIKEY.Key, "Sunlight.NET unit tests");
             var parms = new SearchParameters()
             {
                 Date = new DateTime(2013, 1, 1)
@@ -70,8 +74,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task SimpleTopEntityByPhraseTest()
         {
-            var service = new CapitolWordsService(APIKEY.Key, "Sunlight.NET unit tests");
-
             var results = await service.GetTopLegislatorByPhrase("health");
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Count() > 0);

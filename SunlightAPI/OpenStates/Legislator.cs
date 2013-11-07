@@ -45,7 +45,7 @@ namespace SunlightAPI.OpenStates
         public string office_phone { get; set; }
         public string suffixes { get; set; }
         public List<Source> sources { get; set; }
-        public List<Role> old_roles { get; set; }
+      //  public List<Role> old_roles { get; set; } - sunlight serializes these with the date range as the property names - won't deserialize
         public string boundary_id { get; set; }
         public List<Role> roles { get; set; }
     }

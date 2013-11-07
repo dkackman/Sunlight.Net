@@ -9,10 +9,17 @@ namespace SunlightAPITests
     [TestClass]
     public class CongressTests
     {
+        private ICongressService service;
+
+        [TestInitialize]
+        public void Init()
+        {
+            service = new CongressService(APIKEY.Key, "Sunlight.NET unit tests");
+        }
+        
         [TestMethod]
         public async Task FindLegislatorByZip()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.LocateLegislators("55116");
 
             Assert.IsNotNull(results);
@@ -23,7 +30,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FindLegislatorByLatLong()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.LocateLegislators(44.926868, -93.214049);
 
             Assert.IsNotNull(results);
@@ -33,7 +39,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FindDistrictsByZip()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.LocateLegislators("55116");
 
             Assert.IsNotNull(results);
@@ -44,7 +49,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FindDistrictsByLatLong()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.LocateLegislators(44.926868, -93.214049);
 
             Assert.IsNotNull(results);
@@ -55,7 +59,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FindLegislators()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.FindLegislators("");
 
             Assert.IsNotNull(results);
@@ -66,7 +69,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FindCommittees()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.FindCommittees("");
 
             Assert.IsNotNull(results);
@@ -77,7 +79,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FindBills()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.FindBills("");
 
             Assert.IsNotNull(results);
@@ -88,7 +89,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FindVotes()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.FindVotes("");
 
             Assert.IsNotNull(results);
@@ -99,7 +99,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FindFloorUpdates()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.FindFloorUpdates("");
 
             Assert.IsNotNull(results);
@@ -110,7 +109,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FindHearings()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.FindHearings("");
 
             Assert.IsNotNull(results);
@@ -121,7 +119,6 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task FindUpcomingBills()
         {
-            var service = new CongressService(APIKEY.Key);
             var results = await service.FindUpcomingBills("");
 
             Assert.IsNotNull(results);

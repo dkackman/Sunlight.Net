@@ -8,7 +8,6 @@ namespace SunlightAPI.OpenStates
 {
     public class BillSearchParams
     {
-        public string state { get; set; }
         public string chamber { get; set; }
         public string subject { get; set; }
         public string status { get; set; }

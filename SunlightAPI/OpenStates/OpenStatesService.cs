@@ -8,72 +8,108 @@ namespace SunlightAPI.OpenStates
 {
     public class OpenStatesService : IOpenStatesService
     {
-        private SunlightRestClient _service;
+        private SunlightRestClient _sunlight;
         private const string host = "http://openstates.org/api/v1";
 
         public OpenStatesService(string api_key, string user_agent = "")
         {
-            _service = new SunlightRestClient(host, api_key, user_agent);
+            _sunlight = new SunlightRestClient(host, api_key, user_agent);
         }
 
         public async Task<IEnumerable<MetaData>> GetMetaData()
         {
-            throw new NotImplementedException();
+            return await _sunlight.Get<IEnumerable<MetaData>>("metadata", new Dictionary<string,object>()); // this is the one method we call without params - make sure we get the overload that adds the api key
         }
 
-        public async Task<IEnumerable<MetaData>> GetMetaData(string state)
+        public async Task<MetaData> GetMetaData(string state)
         {
-            throw new NotImplementedException();
+            var parms = new Dictionary<string, object>();
+            parms.Add("state", state);
+
+            return await _sunlight.Get<MetaData>("metadata/mn", parms);
         }
 
-        public async Task<IEnumerable<Bill>> FindBills(string query = null, BillSearchParams parms = null)
+        public async Task<IEnumerable<Bill>> FindBills(string state, BillSearchParams parms, string query = null)
         {
-            throw new NotImplementedException();
+            var p = new Dictionary<string, object>();
+            p.Add("state", state);
+            p.Add("q", query);
+            p.AddProperties(parms);
+
+            return await _sunlight.Get<IEnumerable<Bill>>("bills", p);
         }
 
         public async Task<Bill> GetBill(string state, string session, string bill_id)
         {
-            throw new NotImplementedException();
+            var p = new Dictionary<string, object>();
+
+            return await _sunlight.Get<Bill>(string.Format("bills/{0}/{1}/{2}", state, session, bill_id), p);
         }
 
         public async Task<IEnumerable<Legislator>> FindLegislators(string state, LegislatorSearchParams parms = null)
         {
-            throw new NotImplementedException();
+            var p = new Dictionary<string, object>();
+            p.Add("state", state);
+            p.AddProperties(parms);
+
+            return await _sunlight.Get<IEnumerable<Legislator>>("legislators", p);
         }
 
         public async Task<IEnumerable<Legislator>> LocateLegislators(double lat, double lon)
         {
-            throw new NotImplementedException();
+            var p = new Dictionary<string, object>();
+            p.Add("lat", lat);
+            p.Add("long", lon);
+
+            return await _sunlight.Get<IEnumerable<Legislator>>("legislators/geo", p);
         }
 
         public async Task<Legislator> GetLegislator(string legislator_id)
         {
-            throw new NotImplementedException();
+            var p = new Dictionary<string, object>();
+
+            return await _sunlight.Get<Legislator>("legislators/" + legislator_id, p);
         }
 
         public async Task<IEnumerable<Committee>> FindCommittees(string state, string chamber = null, bool? committee = null, bool? subcommittee = null)
         {
-            throw new NotImplementedException();
+            var p = new Dictionary<string, object>();
+            p.Add("state", state);
+            p.Add("chamber", chamber);
+            p.Add("committee", committee);
+            p.Add("subcommittee", subcommittee);
+
+            return await _sunlight.Get<IEnumerable<Committee>>("committees", p);
         }
 
         public async Task<Committee> GetCommittee(string committee_id)
         {
-            throw new NotImplementedException();
+            var p = new Dictionary<string, object>();
+
+            return await _sunlight.Get<Committee>("committees/" + committee_id, p);
         }
 
         public async Task<IEnumerable<Event>> FindEvents(string state, string type = null)
         {
-            throw new NotImplementedException();
+            var p = new Dictionary<string, object>();
+            p.Add("state", state);
+            p.Add("type", type);
+
+            return await _sunlight.Get<IEnumerable<Event>>("events", p);
         }
 
         public async Task<IEnumerable<District>> FindDistricts(string state, string chamber)
         {
-            throw new NotImplementedException();
+            var p = new Dictionary<string, object>();
+            
+            return await _sunlight.Get<IEnumerable<District>>(string.Format("districts/{0}/{1}", state, chamber), p);
         }
 
         public async Task<DistrictBoundary> GetDistrictBoundary(string boundary_id)
         {
-            throw new NotImplementedException();
+            var p = new Dictionary<string, object>();
+
+            return await _sunlight.Get<DistrictBoundary>("districts/boundary/" + boundary_id, p);
         }
     }
 }

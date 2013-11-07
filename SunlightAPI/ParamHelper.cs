@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Diagnostics;
 
-namespace SunlightAPI.Congress
+namespace SunlightAPI
 {
     static class ParamHelper
     {
@@ -46,6 +46,36 @@ namespace SunlightAPI.Congress
                     // this property name as a prefix (history.house_passage_result is an example)
                     else
                         parms.AddSearchableProperties(value, p.Name + ".");
+                }
+            }
+        }
+
+
+        public static void AddProperties(this IDictionary<string, object> parms, object o, string prefix = "")
+        {
+            if (o == null)
+                return;
+
+            Debug.Assert(parms != null);
+
+            foreach (var p in o.GetType().GetRuntimeProperties())
+            {
+                // first off null values are ignored
+                object value = p.GetValue(o);
+                if (value != null)
+                {
+                    // if the property is a string or value type add it as a param
+                    if (value is string || (value.GetType().GetTypeInfo().IsValueType && !value.Equals(0)))
+                        parms.Add(prefix + p.Name, value);
+
+                    // the property is a list in which case search on the first item's value - committee_ids is an example
+                    else if (value is IList<string> && ((IList<string>)value).Count > 0)
+                        parms.Add(prefix + p.Name, ((IList<string>)value)[0]);
+
+                    // the property is marked as searchable but is a sub ojbect - recurse adding 
+                    // this property name as a prefix (history.house_passage_result is an example)
+                    else
+                        parms.AddProperties(value, p.Name + ".");
                 }
             }
         }
