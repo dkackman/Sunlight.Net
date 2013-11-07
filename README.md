@@ -20,7 +20,7 @@ This is currently a work in progress and contains wrappers and unit tests for th
 
 All service methods use async/await and basic usage is:
 
-            IOpenStatesService service = new OpenStatesService(APIKEY.Key, "Sunlight.NET unit tests");
-            var results = await service.LocateLegislators(44.926868, -93.214049);
+    IOpenStatesService service = new OpenStatesService(APIKEY.Key, "Sunlight.NET unit tests");
+    var results = await service.LocateLegislators(44.926868, -93.214049);
 
-            Console.WriteLine("Found {0} legislators", results.Count());
+    Console.WriteLine("Found {0} legislators", results.Count());
