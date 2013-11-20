@@ -8,7 +8,7 @@ namespace SunlightAPITests
 {
     static class APIKEY
     {
-        #error enter your key here
+#error enter your key here http://sunlightfoundation.com/api/accounts/register/
         public const string Key = "";
     }
 }
