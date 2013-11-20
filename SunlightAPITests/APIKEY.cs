@@ -8,6 +8,7 @@ namespace SunlightAPITests
 {
     static class APIKEY
     {
-        public const string Key = "e5883b15e17d4e1f8d93babda91160c6";
+        #error enter your key here
+        public const string Key = "";
     }
 }
