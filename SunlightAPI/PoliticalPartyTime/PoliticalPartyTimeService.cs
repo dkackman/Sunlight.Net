@@ -9,7 +9,7 @@ namespace SunlightAPI.PoliticalPartyTime
         private SunlightRestClient _service;
 
         private const string host = "http://politicalpartytime.org";
-        private const string apiV = "api/v1";
+        private const string apiV = "api/v1/";
 
         public PoliticalPartyTimeService(string api_key, string user_agent = "")
         {
@@ -30,7 +30,7 @@ namespace SunlightAPI.PoliticalPartyTime
             parms.Add("host__id", host__id);
             parms.Add("beneficiaries__state", beneficiaries__state);
 
-            return await _service.Get<FilterResults<Event>>(apiV + "/event/", parms);
+            return await _service.Get<FilterResults<Event>>(apiV + "event", parms);
         }
 
         public async Task<Event> GetEvent(string id)
@@ -38,7 +38,7 @@ namespace SunlightAPI.PoliticalPartyTime
             var parms = new Dictionary<string, object>();
             parms.Add("format", "json");
 
-            return await _service.Get<Event>(string.Format("{0}/event/{1}/", apiV, id), parms);
+            return await _service.Get<Event>(string.Format("{0}event/{1}", apiV, id), parms);
         }
 
         public async Task<FilterResults<Beneficiary>> FindLegislators(string crp_id = null)
@@ -47,7 +47,7 @@ namespace SunlightAPI.PoliticalPartyTime
             parms.Add("format", "json");
             parms.Add("crp_id", crp_id);
 
-            return await _service.Get<FilterResults<Beneficiary>>(apiV + "/lawmaker/", parms);
+            return await _service.Get<FilterResults<Beneficiary>>(apiV + "lawmaker", parms);
         }
 
         public async Task<Beneficiary> GetLegislator(string id)
@@ -55,7 +55,7 @@ namespace SunlightAPI.PoliticalPartyTime
             var parms = new Dictionary<string, object>();
             parms.Add("format", "json");
 
-            return await _service.Get<Beneficiary>(string.Format("{0}/lawmaker/{1}/", apiV, id), parms);
+            return await _service.Get<Beneficiary>(string.Format("{0}lawmaker/{1}", apiV, id), parms);
         }
 
         public async Task<FilterResults<Host>> GetHosts()
@@ -63,7 +63,7 @@ namespace SunlightAPI.PoliticalPartyTime
             var parms = new Dictionary<string, object>();
             parms.Add("format", "json");
 
-            return await _service.Get<FilterResults<Host>>(apiV + "/host/", parms);
+            return await _service.Get<FilterResults<Host>>(apiV + "host", parms);
         }
 
         public async Task<Host> GetHost(string id)
@@ -71,7 +71,7 @@ namespace SunlightAPI.PoliticalPartyTime
             var parms = new Dictionary<string, object>();
             parms.Add("format", "json");
 
-            return await _service.Get<Host>(string.Format("{0}/host/{1}/", apiV, id), parms);
+            return await _service.Get<Host>(string.Format("{0}host/{1}", apiV, id), parms);
         }
     }
 }

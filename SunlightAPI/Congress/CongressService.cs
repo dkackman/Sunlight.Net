@@ -19,7 +19,7 @@ namespace SunlightAPI.Congress
             parms.Add("latitude", lat);
             parms.Add("longitude", lon);
 
-            return await _service.Get<Results<Legislator>>("/legislators/locate", parms);
+            return await _service.Get<Results<Legislator>>("legislators/locate", parms);
         }
 
         public async Task<Results<Legislator>> LocateLegislators(string zip)
@@ -27,7 +27,7 @@ namespace SunlightAPI.Congress
             var parms = new Dictionary<string, object>();
             parms.Add("zip", zip);
 
-            return await _service.Get<Results<Legislator>>("/legislators/locate", parms);
+            return await _service.Get<Results<Legislator>>("legislators/locate", parms);
         }
 
         public async Task<Results<Legislator>> FindLegislators(string query = null, Legislator searchPrototype = null)
@@ -36,7 +36,7 @@ namespace SunlightAPI.Congress
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<Legislator>>("/legislators", parms);
+            return await _service.Get<Results<Legislator>>("legislators", parms);
         }
 
         public async Task<Results<District>> LocateDistricts(double lat, double lon)
@@ -45,7 +45,7 @@ namespace SunlightAPI.Congress
             parms.Add("latitude", lat);
             parms.Add("longitude", lon);
 
-            return await _service.Get<Results<District>>("/districts/locate", parms);
+            return await _service.Get<Results<District>>("districts/locate", parms);
         }
 
         public async Task<Results<District>> LocateDistricts(string zip)
@@ -53,7 +53,7 @@ namespace SunlightAPI.Congress
             var parms = new Dictionary<string, object>();
             parms.Add("zip", zip);
 
-            return await _service.Get<Results<District>>("/districts/locate", parms);
+            return await _service.Get<Results<District>>("districts/locate", parms);
         }
 
         public async Task<Results<Committee>> FindCommittees(string query = null, Committee searchPrototype = null)
@@ -62,7 +62,7 @@ namespace SunlightAPI.Congress
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<Committee>>("/committees", parms);
+            return await _service.Get<Results<Committee>>("committees", parms);
         }
 
         public async Task<Results<Bill>> FindBills(string query = null, Bill searchPrototype = null)
@@ -71,7 +71,7 @@ namespace SunlightAPI.Congress
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<Bill>>("/bills", parms);
+            return await _service.Get<Results<Bill>>("bills", parms);
         }
 
         public async Task<Results<Bill>> SearchBills(string query = null, bool highlight = false, Bill searchPrototype = null)
@@ -81,7 +81,7 @@ namespace SunlightAPI.Congress
             parms.Add("highlight", highlight);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<Bill>>("/bills/search", parms);
+            return await _service.Get<Results<Bill>>("bills/search", parms);
         }
 
         public async Task<Results<Vote>> FindVotes(string query = null, Vote searchPrototype = null)
@@ -90,7 +90,7 @@ namespace SunlightAPI.Congress
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<Vote>>("/votes", parms);
+            return await _service.Get<Results<Vote>>("votes", parms);
         }
 
         public async Task<Results<FloorUpdate>> FindFloorUpdates(string query = null, FloorUpdate searchPrototype = null)
@@ -99,7 +99,7 @@ namespace SunlightAPI.Congress
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<FloorUpdate>>("/floor_updates", parms);
+            return await _service.Get<Results<FloorUpdate>>("floor_updates", parms);
         }
 
         public async Task<Results<Hearing>> FindHearings(string query = null, Hearing searchPrototype = null)
@@ -108,7 +108,7 @@ namespace SunlightAPI.Congress
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<Hearing>>("/hearings", parms);
+            return await _service.Get<Results<Hearing>>("hearings", parms);
         }
 
         public async Task<Results<UpcomingBill>> FindUpcomingBills(string query = null, UpcomingBill searchPrototype = null)
@@ -117,7 +117,7 @@ namespace SunlightAPI.Congress
             parms.Add("query", query);
             parms.AddSearchableProperties(searchPrototype);
 
-            return await _service.Get<Results<UpcomingBill>>("/upcoming_bills", parms);
+            return await _service.Get<Results<UpcomingBill>>("upcoming_bills", parms);
         }
     }
 }

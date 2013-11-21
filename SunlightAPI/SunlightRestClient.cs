@@ -18,7 +18,7 @@ namespace SunlightAPI
         {
             BaseUrl = root;
             UserAgent = user_agent;
-            apikey_param = "?apikey=" + api_key;
+            apikey_param = api_key;
         }
 
         public async Task<T> Get<T>(string resource) where T : class
@@ -34,26 +34,14 @@ namespace SunlightAPI
         {
             Debug.Assert(parms != null);
 
-            return await Get<T>(FormatResource(endPoint, parms));
-        }
+            var request = new RestRequest(endPoint, HttpMethod.Get);
+            request.ContentType = ContentTypes.FormUrlEncoded;
+            request.AddQueryString("apikey", apikey_param);
 
-        /// <summary>
-        /// I cannot get the PortableRest client to put the parameters on the url so we'll do it ourselves
-        /// </summary>
-        /// <param name="endPoint"></param>
-        /// <param name="parms"></param>
-        /// <returns></returns>
-        private string FormatResource(string endPoint, IDictionary<string, object> parms)
-        {
-            // format the first param without an &
-            StringBuilder builder = new StringBuilder(endPoint + apikey_param);
-
-            // ignore all params where the value is null
-            // now append all subsequent params with an &
             foreach (var kvp in parms.Where(kvp => kvp.Value != null))
-                builder.AppendFormat("&{0}={1}", WebUtility.UrlEncode(kvp.Key), WebUtility.UrlEncode(kvp.Value.ToString()));
+                request.AddQueryString(kvp.Key, kvp.Value.ToString());
 
-            return builder.ToString();
+            return await ExecuteAsync<T>(request);
         }
     }
 }
