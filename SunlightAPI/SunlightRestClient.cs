@@ -12,13 +12,12 @@ namespace SunlightAPI
 {
     class SunlightRestClient : RestClient
     {
-        string apikey_param;
-
         public SunlightRestClient(string root, string api_key, string user_agent)
         {
             BaseUrl = root;
             UserAgent = user_agent;
-            apikey_param = api_key;
+
+            AddHeader("X-APIKEY", api_key);
         }
 
         public async Task<T> Get<T>(string resource) where T : class
@@ -36,7 +35,6 @@ namespace SunlightAPI
 
             var request = new RestRequest(endPoint, HttpMethod.Get);
             request.ContentType = ContentTypes.FormUrlEncoded;
-            request.AddQueryString("apikey", apikey_param);
 
             foreach (var kvp in parms.Where(kvp => kvp.Value != null))
                 request.AddQueryString(kvp.Key, kvp.Value.ToString());
