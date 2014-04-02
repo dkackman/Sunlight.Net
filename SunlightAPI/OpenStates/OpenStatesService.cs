@@ -21,9 +21,8 @@ namespace SunlightAPI.OpenStates
         public async Task<MetaData> GetMetaData(string state)
         {
             var parms = new Dictionary<string, object>();
-            parms.Add("state", state);
 
-            return await _sunlight.Get<MetaData>("metadata/mn", parms);
+            return await _sunlight.Get<MetaData>("metadata/" + state, parms);
         }
 
         public async Task<IEnumerable<Bill>> FindBills(string state, BillSearchParams parms, string query = null)

@@ -31,10 +31,10 @@ namespace SunlightAPITests
         [TestMethod]
         public async Task GetMetaDataByState()
         {
-            var result = await service.GetMetaData("mn");
+            var result = await service.GetMetaData("az");
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(result.abbreviation, "mn");
+            Assert.AreEqual(result.abbreviation, "az");
         }
 
         [TestMethod]
